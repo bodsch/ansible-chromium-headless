@@ -1,0 +1,6 @@
+molecule>=3.0.5
+docker
+ansible-lint>=3.4.0
+testinfra>=1.7.0
+jmespath
+cryptography

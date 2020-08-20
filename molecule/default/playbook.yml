@@ -1,0 +1,12 @@
+---
+- hosts: all
+  any_errors_fatal: false
+  environment:
+    NETRC: ''
+
+  vars:
+    # ansible_python_interpreter: python3
+
+  roles:
+    - role: epel
+    - role: ansible-chromium-headless

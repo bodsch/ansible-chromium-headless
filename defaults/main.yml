@@ -1,0 +1,10 @@
+---
+# defaults file for ansible-chromium-headless
+
+chromium_headless_display: ":20.0"
+chromium_headless_screen_geometry: "1440x900x24"
+
+chromium_headless_chromedriver_port: 4444
+chromium_headless_chromedriver_whitelisted_ips: "127.0.0.1"
+chromium_headless_chromedriver_url_base: ''
+chromium_headless_chromedriver_extra_args: ''

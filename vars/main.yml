@@ -1,0 +1,17 @@
+---
+
+_chromium_headless_packages:
+  default:
+    - python-mysqldb
+    - python3-mysqldb
+    - libmariadb-dev
+  centos:
+    - chromium-headless
+    - chromedriver
+  debian:
+
+
+chromium_headless_packages: "{{ _icinga2_mariadb_packages[ansible_distribution | lower ~ '-' ~ ansible_distribution_major_version ] |
+  default(_icinga2_mariadb_packages[ansible_distribution | lower ~ '-' ~ ansible_distribution_major_version] |
+  default(_icinga2_mariadb_packages[ansible_distribution | lower] |
+  default(_icinga2_mariadb_packages['default']))) }}"

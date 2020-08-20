@@ -1,0 +1,16 @@
+---
+- name: install chromium-headless
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - chromium-headless
+    - chromedriver
+
+- name: insert custom profile script to define PATH variables
+  template:
+    src: profile.d/chromedriver.sh.j2
+    dest: /etc/profile.d/chromedriver.sh
+    owner: root
+    group: root
+    mode: 0755
