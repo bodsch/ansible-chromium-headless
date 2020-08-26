@@ -12,4 +12,6 @@ galaxy_info:
         - 7
         - 8
 
-dependencies: []
+dependencies:
+  - role: geerlingguy.repo-epel
+    version: 1.3.0

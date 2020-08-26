@@ -20,4 +20,5 @@ ignore: |
   molecule/
   .molecule/
   .travis.yml
+  .ansible-lint.yml
   .tox
