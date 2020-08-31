@@ -24,7 +24,9 @@ def get_vars(host):
 
 
 @pytest.mark.parametrize("files", [
-    "/etc/profile.d/chromedriver.sh"
+    "/etc/profile.d/chromedriver.sh",
+    "/usr/lib/chromium/chromium",
+    "/usr/bin/chromedriver",
 ])
 def test_files(host, files):
     f = host.file(files)

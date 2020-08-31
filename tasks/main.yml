@@ -16,30 +16,31 @@
       name: "{{ item }}"
       state: present
     loop:
-      - fonts-liberation
-      - libappindicator1
-      - libappindicator3-1
-      - libasound2
-      - libatk-bridge2.0-0
-      - libatspi2.0-0
-      - libgbm1
-      - libgtk-3-0
-      - libnspr4
-      - libnss3
-      - libxss1
-      - unzip
-      - xdg-utils
-      - xz-utils
+      - chromium-common
+#      - fonts-liberation
+#      - libappindicator1
+#      - libappindicator3-1
+#      - libasound2
+#      - libatk-bridge2.0-0
+#      - libatspi2.0-0
+#      - libgbm1
+#      - libgtk-3-0
+#      - libnspr4
+#      - libnss3
+#      - libxss1
+#      - unzip
+#      - xdg-utils
+#      - xz-utils
 
-  - name: download chrome
-    get_url:
-      url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      dest: /tmp/google-chrome-stable_current_amd64.deb
-      mode: 0660
-    register: download_archive
-    until: download_archive is succeeded
-    retries: 5
-    delay: 2
+#  - name: download chrome
+#    get_url:
+#      url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#      dest: /tmp/google-chrome-stable_current_amd64.deb
+#      mode: 0660
+#    register: download_archive
+#    until: download_archive is succeeded
+#    retries: 5
+#    delay: 2
 
   - name: get LATEST_RELEASE of chromedriver
     uri:
@@ -58,15 +59,15 @@
     retries: 5
     delay: 2
 
-  - debug:
-      msg: "{{ item }}"
-    loop:
-      - "{{ chromedriver_version }}"
+#  - debug:
+#      msg: "{{ item }}"
+#    loop:
+#      - "{{ chromedriver_version }}"
 
-  - name: install chrome
-    apt:
-      deb: "/tmp/google-chrome-stable_current_amd64.deb"
-      state: present
+#  - name: install chrome
+#    apt:
+#      deb: "/tmp/google-chrome-stable_current_amd64.deb"
+#      state: present
 
   - name: unarchive chromedriver
     unarchive:
