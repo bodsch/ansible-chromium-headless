@@ -1,4 +1,5 @@
 ---
+
 - name: install chromium-headless
   package:
     name: "{{ item }}"
@@ -6,6 +7,77 @@
   loop:
     - chromium-headless
     - chromedriver
+  when:
+    ansible_os_family | lower == 'redhat'
+
+- block:
+  - name: install chromium-headless (debian)
+    package:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - fonts-liberation
+      - libappindicator1
+      - libappindicator3-1
+      - libasound2
+      - libatk-bridge2.0-0
+      - libatspi2.0-0
+      - libgbm1
+      - libgtk-3-0
+      - libnspr4
+      - libnss3
+      - libxss1
+      - unzip
+      - xdg-utils
+      - xz-utils
+
+  - name: download chrome
+    get_url:
+      url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      dest: /tmp/google-chrome-stable_current_amd64.deb
+      mode: 0660
+    register: download_archive
+    until: download_archive is succeeded
+    retries: 5
+    delay: 2
+
+  - name: get LATEST_RELEASE of chromedriver
+    uri:
+      url: https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+      method: GET
+      return_content: true
+    register: chromedriver_version
+
+  - name: download chrome
+    get_url:
+      url: "https://chromedriver.storage.googleapis.com/{{ chromedriver_version.content }}/chromedriver_linux64.zip"
+      dest: /tmp/chromedriver_linux64.zip
+      mode: 0660
+    register: download_archive
+    until: download_archive is succeeded
+    retries: 5
+    delay: 2
+
+  - debug:
+      msg: "{{ item }}"
+    loop:
+      - "{{ chromedriver_version }}"
+
+  - name: install chrome
+    apt:
+      deb: "/tmp/google-chrome-stable_current_amd64.deb"
+      state: present
+
+  - name: unarchive chromedriver
+    unarchive:
+      remote_src: true
+      src: /tmp/chromedriver_linux64.zip
+      dest: /usr/bin/
+      #creates: /usr/bin/chromedriver
+    
+  when:
+    ansible_os_family | lower == 'debian'
+
 
 - name: insert custom profile script to define PATH variables
   template:
