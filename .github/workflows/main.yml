@@ -89,19 +89,22 @@ jobs:
 
       - name: test with tox
         run: |
+          cd ../
+          mv ansible-chromium-headless chromium.headless
+          cd chromium.headless
           tox -e py$(printf "${{ matrix.python-version }}" | tr -d '.')-ansible$(printf "${{ matrix.ansible-version }}" | tr -d '.') -- molecule test
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
 
-  # publish:
-  #   if: github.ref == 'refs/heads/master'
-  #   needs:
-  #     - test
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #     - name: galaxy
-  #       uses: robertdebock/galaxy-action@1.1.0
-  #       with:
-  #         galaxy_api_key: ${{ secrets.galaxy_api_key }}
+  publish:
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: galaxy
+        uses: robertdebock/galaxy-action@1.1.0
+        with:
+          galaxy_api_key: ${{ secrets.galaxy_api_key }}

@@ -17,4 +17,4 @@
           - "python version       : {{ ansible_python.version.major }}"
 
   roles:
-    - role: ansible-chromium-headless
+    - role: chromium.headless
