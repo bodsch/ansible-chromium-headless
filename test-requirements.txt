@@ -1,6 +1,11 @@
-molecule>=3.0.5
+molecule
+molecule-docker
 docker
-ansible-lint>=3.4.0
-testinfra>=1.7.0
+ansible-lint==5.0.1
+yamllint
+flake8
 jmespath
-cryptography
+pytest
+pytest-testinfra
+tox
+tox-gh-actions

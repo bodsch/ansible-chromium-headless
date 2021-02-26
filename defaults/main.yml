@@ -1,5 +1,4 @@
 ---
-# defaults file for ansible-chromium-headless
 
 chromium_headless_display: ":20.0"
 chromium_headless_screen_geometry: "1440x900x24"
