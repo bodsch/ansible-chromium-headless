@@ -1,6 +1,7 @@
 ---
 
 galaxy_info:
+  role_name: chromium_headless
   author: Bodo Schulz
   description: install Chromium Headless
   license: Apache
