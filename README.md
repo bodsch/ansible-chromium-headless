@@ -22,7 +22,7 @@ Tested on
 
 * Debian based
     - Debian 10 / 11
-    - Ubuntu 20.04
+    - Ubuntu 20.04 / 22.04
 
 ## Example Playbook
 
