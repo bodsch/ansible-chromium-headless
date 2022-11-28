@@ -1,0 +1,7 @@
+---
+
+chromium_headless_packages:
+  - chromium-headless
+  - chromedriver
+
+...

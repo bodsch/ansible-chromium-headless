@@ -1,5 +1,0 @@
----
-
-- name: epel
-  src: https://github.com/geerlingguy/ansible-role-repo-epel.git
-  version: 3.0.0

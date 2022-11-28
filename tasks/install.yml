@@ -1,0 +1,43 @@
+---
+
+- name: prepare
+  include_tasks: prepare.yml
+
+- name: install chromium-headless
+  package:
+    name: "{{ chromium_headless_packages }}"
+    state: present
+
+- block:
+    - name: get LATEST_RELEASE of chromedriver
+      uri:
+        url: https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+        method: GET
+        return_content: true
+      register: chromedriver_version
+
+    - name: download chrome
+      get_url:
+        url: "https://chromedriver.storage.googleapis.com/{{ chromedriver_version.content }}/chromedriver_linux64.zip"
+        dest: /tmp/chromedriver_linux64.zip
+        mode: 0660
+      register: download_archive
+      until: download_archive is succeeded
+      retries: 5
+      delay: 2
+
+    - name: unarchive chromedriver
+      unarchive:
+        remote_src: true
+        src: /tmp/chromedriver_linux64.zip
+        dest: /usr/bin/
+  when:
+    ansible_os_family | lower == 'debian'
+
+- name: insert custom profile script to define PATH variables
+  template:
+    src: profile.d/chromedriver.sh.j2
+    dest: /etc/profile.d/chromedriver.sh
+    owner: root
+    group: root
+    mode: 0755
