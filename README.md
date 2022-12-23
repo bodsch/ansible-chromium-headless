@@ -1,14 +1,18 @@
 
-ansible role to install chromium-headless
+# Ansible Role: `chromium-headless`
+
+Ansible role to install chromium-headless
 
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bodsch/ansible-chromium-headless/CI)][ci]
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bodsch/ansible-chromium-headless/main.yml?branch=main)][ci]
 [![GitHub issues](https://img.shields.io/github/issues/bodsch/ansible-chromium-headless)][issues]
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/bodsch/ansible-chromium-headless)][releases]
+[![Ansible Quality Score](https://img.shields.io/ansible/quality/50067?label=role%20quality)][quality]
 
 [ci]: https://github.com/bodsch/ansible-chromium-headless/actions
 [issues]: https://github.com/bodsch/ansible-chromium-headless/issues?q=is%3Aopen+is%3Aissue
 [releases]: https://github.com/bodsch/ansible-chromium-headless/releases
+[quality]: https://galaxy.ansible.com/bodsch/registry_ui
 
 
 ## Requirements & Dependencies
@@ -16,7 +20,7 @@ ansible role to install chromium-headless
 Nothing
 
 
-### Operating systems
+## Operating systems
 
 Tested on
 
@@ -24,15 +28,19 @@ Tested on
     - Debian 10 / 11
     - Ubuntu 20.04 / 22.04
 
-## Example Playbook
+## usage
 
-```
- - hosts: all
-   roles:
-     - role: chromium-headless
+```yaml
+chromium_headless_display: ":20.0"
+chromium_headless_screen_geometry: "1440x900x24"
+
+chromium_headless_chromedriver_port: 4444
+chromium_headless_chromedriver_whitelisted_ips: "127.0.0.1"
+chromium_headless_chromedriver_url_base: ''
+chromium_headless_chromedriver_extra_args: ''
 ```
 
-## Role Variables
+### Variables
 
 [defaults/main.yml](defaults/main.yml)
 
@@ -45,12 +53,24 @@ Tested on
 | `chromium_headless_chromedriver_url_base` | `''` | url base |
 | `chromium_headless_chromedriver_extra_args` | `''` | extra args |
 
-## Tests
+
+### Example Playbook
 
 ```
-$ tox -e py37-ansible29 -- molecule test
+ - hosts: all
+   roles:
+     - role: chromium-headless
 ```
+
+
+---
+
+## Author and License
+
+- Bodo Schulz
+
 ## License
 
-Apache
+[Apache](LICENSE)
 
+`FREE SOFTWARE, HELL YEAH!`

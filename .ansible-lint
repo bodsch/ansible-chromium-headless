@@ -1,7 +1,5 @@
 ---
 
 skip_list:
-  - fqcn[action-core]
-  - fqcn[action]
-  - name[template]
   - name[casing]
+  - name[template]
