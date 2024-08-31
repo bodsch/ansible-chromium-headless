@@ -2,6 +2,7 @@
 
 galaxy_info:
   role_name: chromium_headless
+  namespace: bodsch
 
   author: Bodo Schulz
   description: install Chromium Headless

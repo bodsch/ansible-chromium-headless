@@ -7,12 +7,12 @@ Ansible role to install chromium-headless
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bodsch/ansible-chromium-headless/main.yml?branch=main)][ci]
 [![GitHub issues](https://img.shields.io/github/issues/bodsch/ansible-chromium-headless)][issues]
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/bodsch/ansible-chromium-headless)][releases]
-[![Ansible Quality Score](https://img.shields.io/ansible/quality/50067?label=role%20quality)][quality]
+[![Ansible Downloads](https://img.shields.io/ansible/role/d/bodsch/chromium_headless?logo=ansible)][galaxy]
 
 [ci]: https://github.com/bodsch/ansible-chromium-headless/actions
 [issues]: https://github.com/bodsch/ansible-chromium-headless/issues?q=is%3Aopen+is%3Aissue
 [releases]: https://github.com/bodsch/ansible-chromium-headless/releases
-[quality]: https://galaxy.ansible.com/bodsch/registry_ui
+[galaxy]: https://galaxy.ansible.com/ui/standalone/roles/bodsch/chromium_headless/
 
 
 ## Requirements & Dependencies
